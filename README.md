@@ -1,4 +1,4 @@
-# ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA WEBSITE
+# ENGLISH <img width="30px" src="./assets/logo.png" /> JANALA WEBSITE
 
 ---
 
