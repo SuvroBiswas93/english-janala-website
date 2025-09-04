@@ -17,8 +17,9 @@ const displayLesson = (lessons) =>{
     // third step: create element
         const btnDiv = document.createElement('div')
         btnDiv.innerHTML = `
-              <button onclick = "loadWord(${lesson.level_no})"
-              class="btn btn-outline btn-primary">
+            <button id ="lesson-btn-${lesson.level_no}"
+             onclick = "loadWord(${lesson.level_no})"
+              class="btn btn-outline btn-primary lesson-btn">
               <i class="fa-solid fa-book"></i>Lesson - ${lesson.level_no}
               </button>
         `
@@ -29,12 +30,28 @@ const displayLesson = (lessons) =>{
 
 
 }
+
+const removeActiveColor = ()=>{
+    const lessonBtns = document.querySelectorAll(".lesson-btn")
+
+    lessonBtns.forEach(btn =>{
+        btn.classList.remove('active')
+    })
+}
+
+
 const loadWord =(id) =>{
     console.log(id)
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
     .then(res => res.json())
-    .then(json => displayWord(json.data))
+    .then(json => {
+        removeActiveColor();
+        const clickBtn = document.getElementById(`lesson-btn-${id}`);
+        
+        clickBtn.classList.add("active");
+        displayWord(json.data)
+    })
 }
 
 const displayWord = (words) =>{
@@ -70,7 +87,7 @@ const displayWord = (words) =>{
                 / ${word.pronunciation ? word.pronunciation : "Pronunciation খুঁজে পাওয়া যায়নি"}"</p>
            </div>
             <div class="flex justify-between items-center mt-10">
-                <button class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
+                <button class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i onclick ="my_modal_5.showModal()" class="fa-solid fa-circle-info"></i></button>
                 <button class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
             </div>
         </div>
