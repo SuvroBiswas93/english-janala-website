@@ -64,9 +64,10 @@ const displayWord = (words) =>{
         cardDiv.innerHTML = `
              <div class="bg-white rounded-xl shadow-sm px-5 py-10 text-center">
            <div class=" space-y-4">
-                <h2 class="font-bold text-2xl">${word.word}</h2>
+                <h2 class="font-bold text-2xl">${word.word ? word.word : "শব্দ পাওয়া যায়নি"}</h2>
                 <p class="font-semibold">Meaning / Pronounciation</p>
-                <p class="font-bold text-2xl text-gray-600 font-bangla">"${word.meaning} / ${word.pronunciation}"</p>
+                <p class="font-bold text-2xl text-gray-600 font-bangla">"${word.meaning ? word.meaning :"(অর্থ খুঁজে পাওয়া যায়নি)"} 
+                / ${word.pronunciation ? word.pronunciation : "Pronunciation খুঁজে পাওয়া যায়নি"}"</p>
            </div>
             <div class="flex justify-between items-center mt-10">
                 <button class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
