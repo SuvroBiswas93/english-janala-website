@@ -41,6 +41,7 @@ const removeActiveColor = ()=>{
 
 
 const loadWord =(id) =>{
+    manageSpinner(true)
     console.log(id)
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
@@ -66,7 +67,7 @@ const displayWord = (words) =>{
                 <h2 class="font-bold text-4xl ">নেক্সট Lesson এ যান</h2>
             </div>
         ` 
-        
+       
     }
         //     {
         //     "id": 84,
@@ -95,6 +96,7 @@ const displayWord = (words) =>{
         `
         wordContainer.append(cardDiv)
     }
+    manageSpinner(false)
 }
 
 const loadWordDetail = async(id) =>{
@@ -151,6 +153,18 @@ const displayWordDetail = (word) =>{
       // <button class="btn btn-primary">Complete Learning</button>
     document.getElementById("word_modal").showModal()
 
+}
+
+
+const manageSpinner = (status) =>{
+    if(status === true){
+        document.getElementById('manage-spinner').classList.remove('hidden')
+        document.getElementById('word-container').classList.add('hidden')
+    }
+    else{
+        document.getElementById('manage-spinner').classList.add('hidden')
+        document.getElementById('word-container').classList.remove('hidden')
+    }
 }
 
 loadLessons();
