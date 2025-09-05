@@ -97,6 +97,7 @@ const displayWord = (words) =>{
         wordContainer.append(cardDiv)
     }
     manageSpinner(false)
+    return;
 }
 
 const loadWordDetail = async(id) =>{
@@ -168,3 +169,20 @@ const manageSpinner = (status) =>{
 }
 
 loadLessons();
+
+document.getElementById('search-btn').addEventListener('click', () =>{
+    removeActiveColor();
+    const getInputText  = document.getElementById('input-field')
+    const inputValue = getInputText.value.trim().toLowerCase()
+    console.log(inputValue)
+    const url = `https://openapi.programming-hero.com/api/words/all`
+    fetch(url)
+    .then(res => res.json())
+    .then(json => {
+        const allWords = json.data
+    
+        const filteredWords = allWords.filter(item => item.word.toLowerCase().includes(inputValue))
+        displayWord(filteredWords)
+    })
+
+})
