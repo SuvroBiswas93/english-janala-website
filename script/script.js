@@ -5,6 +5,12 @@ const loadLessons = () =>{
     .then(json =>displayLesson(json.data))
 }
 
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const displayLesson = (lessons) =>{
     // first step: get the container and empty it
 
@@ -89,7 +95,7 @@ const displayWord = (words) =>{
            </div>
             <div class="flex justify-between items-center mt-10">
                 <button onclick ="loadWordDetail(${word.id})" class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></button>
-                <button class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
+                <button onclick = "pronounceWord('${word.word}')" class="btn bg-[#1A91FF10] rounded-lg hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></button>
             </div>
         </div>
         
@@ -174,7 +180,8 @@ document.getElementById('search-btn').addEventListener('click', () =>{
     removeActiveColor();
     const getInputText  = document.getElementById('input-field')
     const inputValue = getInputText.value.trim().toLowerCase()
-    console.log(inputValue)
+    
+
     const url = `https://openapi.programming-hero.com/api/words/all`
     fetch(url)
     .then(res => res.json())
