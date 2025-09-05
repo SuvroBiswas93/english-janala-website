@@ -141,13 +141,14 @@ const displayWordDetail = (word) =>{
             </div>
             <div class = "">
                 <h2 class ="font-bold mb-2">সমার্থক শব্দ গুলো</h2>
-                <span class="btn bg-sky-200">${word.synonyms[0]}</span>
-                <span class="btn bg-sky-200">${word.synonyms[1]}</span>
-                <span class="btn bg-sky-200">${word.synonyms[2]}</span>
+                 ${word.synonyms && word.synonyms[0] ? `<span class="btn bg-sky-200">${word.synonyms[0]}</span>` : ""}
+                 ${word.synonyms && word.synonyms[1] ? `<span class="btn bg-sky-200">${word.synonyms[1]}</span>` : ""}
+                 ${word.synonyms && word.synonyms[2] ? `<span class="btn bg-sky-200">${word.synonyms[2]}</span>` : ""}
             </div>
-            <button class="btn btn-primary">Complete Learning</button>
+          
         
     `
+      // <button class="btn btn-primary">Complete Learning</button>
     document.getElementById("word_modal").showModal()
 
 }
